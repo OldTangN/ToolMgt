@@ -15,6 +15,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MahApps.Metro.Controls;
+using ToolMgt.Common;
 using ToolMgt.UI.Common;
 
 namespace ToolMgt.UI.View
@@ -39,12 +40,20 @@ namespace ToolMgt.UI.View
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            int n = FaceBLL.FaceInit.sdk_init(false);
-            // 测试是否授权
-            bool authed = FaceBLL.FaceInit.is_auth();
-            if (!authed)
+            try
             {
-                MessageAlert.Alert("人脸识别模块授权过期 或 未授权！");
+                int n = FaceBLL.FaceInit.sdk_init(false);
+                // 测试是否授权
+                bool authed = FaceBLL.FaceInit.is_auth();
+                if (!authed)
+                {
+                    MessageAlert.Alert("人脸识别模块授权过期 或 未授权！");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogUtil.WriteLog(ex);
+                MessageAlert.Alert("人脸识别模块初始化失败！" + ex.Message);
             }
         }
 
