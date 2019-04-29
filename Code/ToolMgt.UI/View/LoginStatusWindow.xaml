@@ -1,0 +1,95 @@
+﻿<control:MetroWindow x:Class="ToolMgt.UI.View.LoginStatusWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToolMgt.UI.Controls"
+        xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d" DataContext="{Binding Source={StaticResource Locator},Path=LoginStatus}" 
+        Title="登录状态" Height="350" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" Margin="10">
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">用户账号：</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=CurrUser.Code}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">用户密码：</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=CurrUser.Pwd}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">用户姓名：</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=CurrUser.Name}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">IC卡号：</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=CurrUser.CardNo}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">联系电话：</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=CurrUser.Phone}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">入职时间：</TextBlock>
+                <DatePicker VerticalAlignment="Center" DisplayDate="{x:Static sys:DateTime.Now}" SelectedDateFormat="Short"
+                            SelectedDate="{Binding Path=CurrUser.JoinDate}" Width="150">
+                    <!--<DatePicker.Style>
+                        <Style TargetType="DatePicker">
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <TextBox Text="{Binding Path=SelectedDate, StringFormat='yyyy-MM-dd', RelativeSource={RelativeSource AncestorType=DatePicker}}" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DatePicker.Style>-->
+                </DatePicker>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="10">
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">用户角色：</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=RoleName}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">所属部门：</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=DeptName}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="65" TextAlignment="Right">职务：</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=DutyName}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 5">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" TextAlignment="Right">备注：</TextBlock>
+                <TextBox HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Path=CurrUser.Note}" Width="150" Height="100"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10">
+                <local:ImageBtn x:Name="btnCommit" Command="{Binding Path=CommitCmd}" ToolTip="确定">
+                    <local:ImageBtn.SourceDefault>
+                        <ImageBrush ImageSource="/ToolMgt.UI;component/Images/commit1.png" ></ImageBrush>
+                    </local:ImageBtn.SourceDefault>
+                    <local:ImageBtn.SourceHover>
+                        <ImageBrush ImageSource="/ToolMgt.UI;component/Images/commit2.png"></ImageBrush>
+                    </local:ImageBtn.SourceHover>
+                </local:ImageBtn>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</control:MetroWindow>

@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="ToolMgt.UI.View.ToolRecordListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.c om/expression/blend/2008" 
+             xmlns:local="clr-namespace:ToolMgt.UI.Controls"
+             mc:Ignorable="d"  DataContext="{Binding Source={StaticResource Locator},Path=ToolRecordList}"
+             d:DesignHeight="700" d:DesignWidth="1300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontSize="24" HorizontalAlignment="Center">工具借出、归还记录</Label>
+        <Border Grid.Row="1" BorderBrush="Silver" BorderThickness="0 1">
+            <StackPanel  Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="btnBorrow" Margin="20 0 0 0" Command="{Binding Path=BorrowCmd}" Content="工具借出" Width="100" Height="35" ToolTip="工具借出">
+                    </Button>
+                    <Button x:Name="btnReturn" Margin="20 0 0 0" Command="{Binding Path=ReturnCmd}" Content="工具归还" Width="100" Height="35" ToolTip="工具借出">
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="100 0">
+                    <TextBlock VerticalAlignment="Center">用户卡号</TextBlock>
+                    <TextBox Text="{Binding Path=SearchCard}" Width="100" VerticalAlignment="Center"></TextBox>
+                    <TextBlock VerticalAlignment="Center">工具条码</TextBlock>
+                    <TextBox Text="{Binding Path=SearchBarcode}" Width="100" VerticalAlignment="Center"></TextBox>
+                    <TextBlock VerticalAlignment="Center" Margin="30 0 0 0">工具类别</TextBlock>
+                    <ComboBox ItemsSource="{Binding Path=Categorys}" DisplayMemberPath="Name"
+                          SelectedValue="{Binding Path=SelectedCategoryId,Mode=TwoWay}" SelectedValuePath="Id"
+                          Width="100" VerticalAlignment="Center"></ComboBox>
+                    <TextBlock VerticalAlignment="Center" Margin="30 0 0 0">归还状态</TextBlock>
+                    <ComboBox ItemsSource="{Binding Path=States}" DisplayMemberPath="Name"
+                          SelectedValue="{Binding Path=SelectedStateId,Mode=TwoWay}" SelectedValuePath="Id"
+                          Width="100" VerticalAlignment="Center"></ComboBox>
+                    <local:ImageBtn x:Name="btnSearch" Command="{Binding Path=SearchCmd}" ToolTip="搜索" Margin="30 0 0 0">
+                        <local:ImageBtn.SourceDefault>
+                            <ImageBrush Stretch="Uniform" ImageSource="/ToolMgt.UI;component/Images/search1.png" ></ImageBrush>
+                        </local:ImageBtn.SourceDefault>
+                        <local:ImageBtn.SourceHover>
+                            <ImageBrush Stretch="Uniform" ImageSource="/ToolMgt.UI;component/Images/search2.png"></ImageBrush>
+                        </local:ImageBtn.SourceHover>
+                    </local:ImageBtn>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="2">
+            <DataGrid ItemsSource="{Binding Path=ToolRecords}" SelectedItem="{Binding Path=SelectRecord,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Width="20*" Binding="{Binding Path=Id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="条码" Width="50*" Binding="{Binding Path=Tool.Barcode}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="名称" Width="50*" Binding="{Binding Path=Tool.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="类别" Width="40*" Binding="{Binding Path=Tool.ToolCategory.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="规格" Width="50*" Binding="{Binding Path=Tool.Spec}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="借出人员" Width="50*" Binding="{Binding Path=BorrowerName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="借出时间" Width="60*" Binding="{Binding Path=BorrowTime,StringFormat='yyyy-MM-dd HH:mm:ss'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="预计归还时间" Width="60*" Binding="{Binding Path=ExceptReturnTime,StringFormat='yyyy-MM-dd HH:mm:ss'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="借出操作人" Width="50*" Binding="{Binding Path=BorrowOperatorName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="实际归还时间" Width="60*" Binding="{Binding Path=RealReturnTime,StringFormat='yyyy-MM-dd HH:mm:ss'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="归还操作人" Width="50*" Binding="{Binding Path=ReturnOperatorName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="归还状态" Width="50*" Binding="{Binding Path=ReturnStateName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="备注" Width="50*" Binding="{Binding Path=Note}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,170 @@
+﻿<control:MetroWindow x:Class="ToolMgt.UI.View.ToolReturnWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToolMgt.UI.Controls"
+        xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"        
+        xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:aforge ="clr-namespace:AForge.Controls;assembly=AForge.Controls"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d" DataContext="{Binding Source={StaticResource Locator},Path=ToolReturn}" 
+        Title="工具归还" Height="510" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="250*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" Margin="10">
+            <StackPanel>
+                <Border BorderBrush="Silver" BorderThickness="1">
+                    <StackPanel>
+                        <wfi:WindowsFormsHost Name="videoHost" Visibility="Visible" Width="200" Height="200">
+                            <aforge:VideoSourcePlayer x:Name="player" AutoSizeControl="False" Width="200" Height="200" />
+                        </wfi:WindowsFormsHost>
+                        <Image Name="imgUser" Visibility="Collapsed" Width="200" Height="200" Stretch="Uniform"></Image>
+                    </StackPanel>
+                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <local:ImageBtn x:Name="btnRefreshCamera" Command="{Binding Path=RefreshCameraCmd}" ToolTip="刷新镜头">
+                        <local:ImageBtn.SourceDefault>
+                            <ImageBrush ImageSource="/ToolMgt.UI;component/Images/refresh1.png" ></ImageBrush>
+                        </local:ImageBtn.SourceDefault>
+                        <local:ImageBtn.SourceHover>
+                            <ImageBrush ImageSource="/ToolMgt.UI;component/Images/refresh2.png"></ImageBrush>
+                        </local:ImageBtn.SourceHover>
+                    </local:ImageBtn>
+                    <local:ImageBtn x:Name="btnTakePic" Command="{Binding Path=TakePicCmd}" ToolTip="拍照">
+                        <local:ImageBtn.SourceDefault>
+                            <ImageBrush ImageSource="/ToolMgt.UI;component/Images/camera1.png" ></ImageBrush>
+                        </local:ImageBtn.SourceDefault>
+                        <local:ImageBtn.SourceHover>
+                            <ImageBrush ImageSource="/ToolMgt.UI;component/Images/camera2.png"></ImageBrush>
+                        </local:ImageBtn.SourceHover>
+                    </local:ImageBtn>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="80" TextAlignment="Right" Padding="0 0 5 0">借用人卡号</TextBlock>
+                <TextBox VerticalAlignment="Center" Text="{Binding Path=Borrower.CardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                         ToolTip="回车查询" Width="110">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding Path=SearchUserCmd}"></KeyBinding>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <local:ImageBtn x:Name="btnSelectUser" Width="35" Height="30" Command="{Binding Path=SelectUserCmd}" ToolTip="选择用户">
+                    <local:ImageBtn.SourceDefault>
+                        <ImageBrush ImageSource="/ToolMgt.UI;component/Images/notebook1.png" ></ImageBrush>
+                    </local:ImageBtn.SourceDefault>
+                    <local:ImageBtn.SourceHover>
+                        <ImageBrush ImageSource="/ToolMgt.UI;component/Images/notebook2.png"></ImageBrush>
+                    </local:ImageBtn.SourceHover>
+                </local:ImageBtn>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="80" TextAlignment="Right" Padding="0 0 5 0">借用人姓名</TextBlock>
+                <TextBox VerticalAlignment="Center" IsReadOnly="True" Text="{Binding Path=Borrower.Name}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="80" TextAlignment="Right" Padding="0 0 5 0">归还操作员</TextBlock>
+                <TextBox VerticalAlignment="Center" IsReadOnly="True" Text="{Binding Path=ReturnOperator.Name}" Width="150"></TextBox>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Height="30" Margin="0 5">
+                <TextBlock VerticalAlignment="Center" Width="80" TextAlignment="Right" Padding="0 0 5 0">实际归还时间</TextBlock>
+                <DatePicker VerticalAlignment="Center" DisplayDate="{x:Static sys:DateTime.Now}" SelectedDateFormat="Short"
+                            SelectedDate="{Binding Path=RealReturnTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="150">
+                </DatePicker>
+                <TextBlock VerticalAlignment="Center">*</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5">
+                <local:ImageBtn x:Name="btnCommit" Command="{Binding Path=CommitCmd}" ToolTip="确定">
+                    <local:ImageBtn.SourceDefault>
+                        <ImageBrush ImageSource="/ToolMgt.UI;component/Images/commit1.png" ></ImageBrush>
+                    </local:ImageBtn.SourceDefault>
+                    <local:ImageBtn.SourceHover>
+                        <ImageBrush ImageSource="/ToolMgt.UI;component/Images/commit2.png"></ImageBrush>
+                    </local:ImageBtn.SourceHover>
+                </local:ImageBtn>
+                <local:ImageBtn x:Name="btnCancel" Command="{Binding Path=CancelCmd}" ToolTip="取消">
+                    <local:ImageBtn.SourceDefault>
+                        <ImageBrush ImageSource="/ToolMgt.UI;component/Images/cancel1.png" ></ImageBrush>
+                    </local:ImageBtn.SourceDefault>
+                    <local:ImageBtn.SourceHover>
+                        <ImageBrush ImageSource="/ToolMgt.UI;component/Images/cancel2.png"></ImageBrush>
+                    </local:ImageBtn.SourceHover>
+                </local:ImageBtn>
+            </StackPanel>
+        </StackPanel>
+        <Border Grid.Column="1" BorderBrush="Silver" BorderThickness="1 0 0 0" IsEnabled="{Binding Path=CurrTool.IsPkg}">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="LightGray"></Setter>
+                            <Setter Property="Opacity" Value="0.3"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Background" Value="Transparent"></Setter>
+                            <Setter Property="Opacity" Value="1"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <StackPanel>
+                <TextBlock FontSize="20" Text="待归还工具列表" TextAlignment="Center"></TextBlock>
+                <!--<StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock VerticalAlignment="Center">工具条码</TextBlock>
+                    <TextBox VerticalAlignment="Center" Text="{Binding Path=SearchBarcode}" Width="150"></TextBox>
+                    <local:ImageBtn x:Name="btnAdd" Width="30" Height="30" Command="{Binding Path=AddCmd}" ToolTip="添加条码" Margin="10 0 0 0">
+                        <local:ImageBtn.SourceDefault>
+                            <ImageBrush Stretch="Uniform" ImageSource="/ToolMgt.UI;component/Images/plus1.png" ></ImageBrush>
+                        </local:ImageBtn.SourceDefault>
+                        <local:ImageBtn.SourceHover>
+                            <ImageBrush Stretch="Uniform" ImageSource="/ToolMgt.UI;component/Images/plus2.png"></ImageBrush>
+                        </local:ImageBtn.SourceHover>
+                    </local:ImageBtn>
+                    <local:ImageBtn x:Name="btnSelectTool" Width="30" Height="30" Command="{Binding Path=SelectToolCmd}" ToolTip="选择更多" Margin="20 0 0 0">
+                        <local:ImageBtn.SourceDefault>
+                            <ImageBrush Stretch="Uniform" ImageSource="/ToolMgt.UI;component/Images/more1.png" ></ImageBrush>
+                        </local:ImageBtn.SourceDefault>
+                        <local:ImageBtn.SourceHover>
+                            <ImageBrush Stretch="Uniform" ImageSource="/ToolMgt.UI;component/Images/more2.png"></ImageBrush>
+                        </local:ImageBtn.SourceHover>
+                    </local:ImageBtn>
+                </StackPanel>-->
+                <DataGrid x:Name="gdReturn" ItemsSource="{Binding Path=ToolRecords}"
+                          SelectedItem="{Binding Path=SelectedRecord,Mode=TwoWay}"
+                          AutoGenerateColumns="False" CanUserAddRows="False" IsSynchronizedWithCurrentItem="True">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu Name="ctxMenu" >
+                            <!--DataContext="{Binding Path=DataContext,ElementName=gdReturn}"
+                                     ItemsSource="{Binding Path=ToolStates}"-->
+                            <MenuItem Header="设置状态" ItemsSource="{Binding ToolStates}">
+                                <MenuItem.ItemContainerStyle>
+                                    <Style TargetType="MenuItem" BasedOn="{StaticResource MetroMenuItem}">
+                                        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorType=MenuItem,Mode=FindAncestor},Path=DataContext.SetStateCmd}"/>
+                                        <Setter Property="Header" Value="{Binding Name}"/>
+                                        <Setter Property="CommandParameter" Value="{Binding Path=.}"/>
+                                    </Style>
+                                </MenuItem.ItemContainerStyle>
+                            </MenuItem>
+                            <MenuItem Header="取消"></MenuItem>                        
+                        </ContextMenu>
+              </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Header="Id" Width="60" Binding="{Binding Path=Id}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="条码" Width="50*" Binding="{Binding Path=Tool.Barcode}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="名称" Width="50*" Binding="{Binding Path=Tool.Name}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="规格" Width="50*" Binding="{Binding Path=Tool.Spec}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="归还状态" Width="50*" Binding="{Binding Path=ReturnStateName}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="备注" Width="50*" Binding="{Binding Path=Note}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</control:MetroWindow>

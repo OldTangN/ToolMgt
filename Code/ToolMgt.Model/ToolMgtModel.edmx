@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ToolMgtModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Duty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleRight">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="RightId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RightId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tool">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Barcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="IsMeasureTool" Type="bit" Nullable="false" />
+          <Property Name="CheckCycle" Type="int" Nullable="false" />
+          <Property Name="IsPkg" Type="bit" Nullable="false" />
+          <Property Name="Spec" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ManufacturingCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BuyDate" Type="datetime" Nullable="false" />
+          <Property Name="CheckNextDate" Type="datetime" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolDamage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToolId" Type="int" Nullable="false" />
+          <Property Name="DamageId" Type="int" Nullable="false" />
+          <Property Name="DamageDate" Type="datetime" Nullable="false" />
+          <Property Name="DutyUserId" Type="int" Nullable="false" />
+          <Property Name="OperatorId" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolPkgItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="ChildrenId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolPurchaseOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsApprove" Type="bit" Nullable="false" />
+          <Property Name="ApproveUserId" Type="int" Nullable="false" />
+          <Property Name="ApproveDate" Type="datetime" />
+          <Property Name="OperatorId" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolPurchaseOrderDtl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="Seq" Type="int" Nullable="false" />
+          <Property Name="ToolName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ToolSpec" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ToolCategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToolId" Type="int" Nullable="false" />
+          <Property Name="BorrowerId" Type="int" Nullable="false" />
+          <Property Name="BorrowTime" Type="datetime" Nullable="false" />
+          <Property Name="BorrowOperatorId" Type="int" Nullable="false" />
+          <Property Name="ExceptReturnTime" Type="datetime" Nullable="false" />
+          <Property Name="RealReturnTime" Type="datetime" />
+          <Property Name="ReturnOperatorId" Type="int" Nullable="false" />
+          <Property Name="ReturnStateId" Type="int" Nullable="false" />
+          <Property Name="IsReturn" Type="bit" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolRepair">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToolId" Type="int" Nullable="false" />
+          <Property Name="RepairCycle" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="OperatorId" Type="int" Nullable="false" />
+          <Property Name="IsApprove" Type="bit" Nullable="false" />
+          <Property Name="ApproveUserId" Type="int" Nullable="false" />
+          <Property Name="ApproveDate" Type="datetime" />
+          <Property Name="IsComplete" Type="bit" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeptId" Type="int" Nullable="false" />
+          <Property Name="DutyId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Pwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDel" Type="bit" Nullable="false" />
+          <Property Name="JoinDate" Type="datetime" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FaceToken" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ToolMgtModelStoreContainer">
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Duty" EntityType="Self.Duty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Right" EntityType="Self.Right" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleRight" EntityType="Self.RoleRight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tool" EntityType="Self.Tool" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolCategory" EntityType="Self.ToolCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolDamage" EntityType="Self.ToolDamage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolPkgItem" EntityType="Self.ToolPkgItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolPurchaseOrder" EntityType="Self.ToolPurchaseOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolPurchaseOrderDtl" EntityType="Self.ToolPurchaseOrderDtl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolRecord" EntityType="Self.ToolRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolRepair" EntityType="Self.ToolRepair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolState" EntityType="Self.ToolState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ToolMgtModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+        </EntityType>
+        <EntityType Name="Duty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+          <NavigationProperty Name="RoleRights" Relationship="ToolMgtModel.RightRoleRight" FromRole="Right" ToRole="RoleRight" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+          <NavigationProperty Name="RoleRights" Relationship="ToolMgtModel.RoleRoleRight" FromRole="Role" ToRole="RoleRight" />
+        </EntityType>
+        <EntityType Name="RoleRight">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="RightId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RightId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Right" Relationship="ToolMgtModel.RightRoleRight" FromRole="RoleRight" ToRole="Right" />
+          <NavigationProperty Name="Role" Relationship="ToolMgtModel.RoleRoleRight" FromRole="RoleRight" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Tool">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="RFID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="IsMeasureTool" Type="Boolean" Nullable="false" />
+          <Property Name="IsPkg" Type="Boolean" Nullable="false" />
+          <Property Name="Spec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="ManufacturingCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="BuyDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CheckCycle" Type="Int32" Nullable="false" />
+          <Property Name="CheckNextDate" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ToolState" Relationship="ToolMgtModel.ToolStateTool" FromRole="Tool" ToRole="ToolState" />
+          <NavigationProperty Name="ToolCategory" Relationship="ToolMgtModel.ToolCategoryTool" FromRole="Tool" ToRole="ToolCategory" />
+          <NavigationProperty Name="ToolRecords" Relationship="ToolMgtModel.ToolToolRecord" FromRole="Tool" ToRole="ToolRecord" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <NavigationProperty Name="Tools" Relationship="ToolMgtModel.ToolCategoryTool" FromRole="ToolCategory" ToRole="Tool" />
+        </EntityType>
+        <EntityType Name="ToolDamage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToolId" Type="Int32" Nullable="false" />
+          <Property Name="DamageId" Type="Int32" Nullable="false" />
+          <Property Name="DamageDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DutyUserId" Type="Int32" Nullable="false" />
+          <Property Name="OperatorId" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+        </EntityType>
+        <EntityType Name="ToolState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <NavigationProperty Name="Tools" Relationship="ToolMgtModel.ToolStateTool" FromRole="ToolState" ToRole="Tool" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeptId" Type="Int32" Nullable="false" />
+          <Property Name="DutyId" Type="Int32" Nullable="false" />
+          <Property Name="Pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDel" Type="Boolean" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
+          <Property Name="FaceToken" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" DefaultValue="" />
+        </EntityType>
+        <EntityContainer Name="ToolMgtEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Duties" EntityType="Self.Duty" />
+          <EntitySet Name="Rights" EntityType="Self.Right" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="RoleRights" EntityType="Self.RoleRight" />
+          <EntitySet Name="Tools" EntityType="Self.Tool" />
+          <EntitySet Name="ToolCategories" EntityType="Self.ToolCategory" />
+          <EntitySet Name="ToolDamages" EntityType="Self.ToolDamage" />
+          <EntitySet Name="ToolStates" EntityType="Self.ToolState" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="RightRoleRight" Association="ToolMgtModel.RightRoleRight">
+            <End Role="Right" EntitySet="Rights" />
+            <End Role="RoleRight" EntitySet="RoleRights" />
+          </AssociationSet>
+          <AssociationSet Name="RoleRoleRight" Association="ToolMgtModel.RoleRoleRight">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="RoleRight" EntitySet="RoleRights" />
+          </AssociationSet>
+          <AssociationSet Name="ToolStateTool" Association="ToolMgtModel.ToolStateTool">
+            <End Role="ToolState" EntitySet="ToolStates" />
+            <End Role="Tool" EntitySet="Tools" />
+          </AssociationSet>
+          <AssociationSet Name="ToolCategoryTool" Association="ToolMgtModel.ToolCategoryTool">
+            <End Role="ToolCategory" EntitySet="ToolCategories" />
+            <End Role="Tool" EntitySet="Tools" />
+          </AssociationSet>
+          <EntitySet Name="ToolPkgItems" EntityType="ToolMgtModel.ToolPkgItem" />
+          <EntitySet Name="ToolRecords" EntityType="ToolMgtModel.ToolRecord" />
+          <AssociationSet Name="ToolToolRecord" Association="ToolMgtModel.ToolToolRecord">
+            <End EntitySet="Tools" Role="Tool" />
+            <End EntitySet="ToolRecords" Role="ToolRecord" />
+          </AssociationSet>
+          <EntitySet Name="ToolRepairs" EntityType="ToolMgtModel.ToolRepair" />
+          <EntitySet Name="ToolPurchaseOrders" EntityType="ToolMgtModel.ToolPurchaseOrder" />
+          <EntitySet Name="ToolPurchaseOrderDtls" EntityType="ToolMgtModel.ToolPurchaseOrderDtl" />
+        </EntityContainer>
+        <Association Name="RightRoleRight">
+          <End Type="ToolMgtModel.Right" Role="Right" Multiplicity="1" />
+          <End Type="ToolMgtModel.RoleRight" Role="RoleRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleRight">
+              <PropertyRef Name="RightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoleRoleRight">
+          <End Type="ToolMgtModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="ToolMgtModel.RoleRight" Role="RoleRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleRight">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ToolStateTool">
+          <End Type="ToolMgtModel.ToolState" Role="ToolState" Multiplicity="1" />
+          <End Type="ToolMgtModel.Tool" Role="Tool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ToolState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tool">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ToolCategoryTool">
+          <End Type="ToolMgtModel.ToolCategory" Role="ToolCategory" Multiplicity="1" />
+          <End Type="ToolMgtModel.Tool" Role="Tool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ToolCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tool">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ToolPkgItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="ChildrenId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ToolRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToolId" Type="Int32" Nullable="false" />
+          <Property Name="BorrowerId" Type="Int32" Nullable="false" />
+          <Property Name="BorrowTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BorrowOperatorId" Type="Int32" Nullable="false" />
+          <Property Name="ExceptReturnTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RealReturnTime" Type="DateTime" Nullable="true" Precision="3" />
+          <Property Name="ReturnOperatorId" Type="Int32" Nullable="false" />
+          <Property Name="ReturnStateId" Type="Int32" Nullable="false" />
+          <Property Name="IsReturn" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tool" Relationship="ToolMgtModel.ToolToolRecord" FromRole="ToolRecord" ToRole="Tool" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" DefaultValue="" />
+        </EntityType>
+        <Association Name="ToolToolRecord">
+          <End Type="ToolMgtModel.Tool" Multiplicity="1" Role="Tool" />
+          <End Type="ToolMgtModel.ToolRecord" Multiplicity="*" Role="ToolRecord" />
+          <ReferentialConstraint>
+            <Principal Role="Tool">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ToolRecord">
+              <PropertyRef Name="ToolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ToolRepair">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ToolId" Type="Int32" Nullable="false" />
+          <Property Name="RepairCycle" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="OperatorId" Type="Int32" Nullable="false" />
+          <Property Name="IsApprove" Type="Boolean" Nullable="false" />
+          <Property Name="IsComplete" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" DefaultValue="" />
+          <Property Name="ApproveUserId" Type="Int32" Nullable="false" />
+          <Property Name="ApproveDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ToolPurchaseOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+          <Property Name="IsApprove" Type="Boolean" Nullable="false" />
+          <Property Name="ApproveUserId" Type="Int32" Nullable="false" />
+          <Property Name="ApproveDate" Type="DateTime" Precision="3" />
+          <Property Name="OperatorId" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+        </EntityType>
+        <EntityType Name="ToolPurchaseOrderDtl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="Seq" Type="Int32" Nullable="false" />
+          <Property Name="ToolName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+          <Property Name="ToolSpec" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+          <Property Name="ToolCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+          <Property Name="Manufacturer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" DefaultValue="" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ToolMgtModelStoreContainer" CdmEntityContainer="ToolMgtEntities">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="ToolMgtModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Duties">
+            <EntityTypeMapping TypeName="ToolMgtModel.Duty">
+              <MappingFragment StoreEntitySet="Duty">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rights">
+            <EntityTypeMapping TypeName="ToolMgtModel.Right">
+              <MappingFragment StoreEntitySet="Right">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ToolMgtModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleRights">
+            <EntityTypeMapping TypeName="ToolMgtModel.RoleRight">
+              <MappingFragment StoreEntitySet="RoleRight">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RightId" ColumnName="RightId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tools">
+            <EntityTypeMapping TypeName="ToolMgtModel.Tool">
+              <MappingFragment StoreEntitySet="Tool">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="IsMeasureTool" ColumnName="IsMeasureTool" />
+                <ScalarProperty Name="IsPkg" ColumnName="IsPkg" />
+                <ScalarProperty Name="Spec" ColumnName="Spec" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="ManufacturingCode" ColumnName="ManufacturingCode" />
+                <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+                <ScalarProperty Name="CheckCycle" ColumnName="CheckCycle" />
+                <ScalarProperty Name="CheckNextDate" ColumnName="CheckNextDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolCategories">
+            <EntityTypeMapping TypeName="ToolMgtModel.ToolCategory">
+              <MappingFragment StoreEntitySet="ToolCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolDamages">
+            <EntityTypeMapping TypeName="ToolMgtModel.ToolDamage">
+              <MappingFragment StoreEntitySet="ToolDamage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ToolId" ColumnName="ToolId" />
+                <ScalarProperty Name="DamageId" ColumnName="DamageId" />
+                <ScalarProperty Name="DamageDate" ColumnName="DamageDate" />
+                <ScalarProperty Name="DutyUserId" ColumnName="DutyUserId" />
+                <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolStates">
+            <EntityTypeMapping TypeName="ToolMgtModel.ToolState">
+              <MappingFragment StoreEntitySet="ToolState">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ToolMgtModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="FaceToken" ColumnName="FaceToken" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+                <ScalarProperty Name="DutyId" ColumnName="DutyId" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolPkgItems">
+            <EntityTypeMapping TypeName="ToolMgtModel.ToolPkgItem">
+              <MappingFragment StoreEntitySet="ToolPkgItem">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ChildrenId" ColumnName="ChildrenId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolRecords">
+            <EntityTypeMapping TypeName="ToolMgtModel.ToolRecord">
+              <MappingFragment StoreEntitySet="ToolRecord">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IsReturn" ColumnName="IsReturn" />
+                <ScalarProperty Name="ReturnStateId" ColumnName="ReturnStateId" />
+                <ScalarProperty Name="ReturnOperatorId" ColumnName="ReturnOperatorId" />
+                <ScalarProperty Name="RealReturnTime" ColumnName="RealReturnTime" />
+                <ScalarProperty Name="ExceptReturnTime" ColumnName="ExceptReturnTime" />
+                <ScalarProperty Name="BorrowOperatorId" ColumnName="BorrowOperatorId" />
+                <ScalarProperty Name="BorrowTime" ColumnName="BorrowTime" />
+                <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+                <ScalarProperty Name="ToolId" ColumnName="ToolId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolRepairs">
+            <EntityTypeMapping TypeName="ToolMgtModel.ToolRepair">
+              <MappingFragment StoreEntitySet="ToolRepair">
+                <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
+                <ScalarProperty Name="ApproveUserId" ColumnName="ApproveUserId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
+                <ScalarProperty Name="IsApprove" ColumnName="IsApprove" />
+                <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="RepairCycle" ColumnName="RepairCycle" />
+                <ScalarProperty Name="ToolId" ColumnName="ToolId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolPurchaseOrders">
+            <EntityTypeMapping TypeName="ToolMgtModel.ToolPurchaseOrder">
+              <MappingFragment StoreEntitySet="ToolPurchaseOrder">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+                <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
+                <ScalarProperty Name="ApproveUserId" ColumnName="ApproveUserId" />
+                <ScalarProperty Name="IsApprove" ColumnName="IsApprove" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolPurchaseOrderDtls">
+            <EntityTypeMapping TypeName="ToolMgtModel.ToolPurchaseOrderDtl">
+              <MappingFragment StoreEntitySet="ToolPurchaseOrderDtl">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="ToolCategoryName" ColumnName="ToolCategoryName" />
+                <ScalarProperty Name="ToolSpec" ColumnName="ToolSpec" />
+                <ScalarProperty Name="ToolName" ColumnName="ToolName" />
+                <ScalarProperty Name="Seq" ColumnName="Seq" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

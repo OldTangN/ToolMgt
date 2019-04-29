@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F9BDF1C0-DB11-4879-B245-ACB290DA232D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ToolMgt.UI</RootNamespace>
+    <AssemblyName>ToolMgt.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Controls.2.2.5\lib\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CameraHelper.cs" />
+    <Compile Include="Common\BoolToHanConverter.cs" />
+    <Compile Include="Common\Global.cs" />
+    <Compile Include="Common\MessageAlert.cs" />
+    <Compile Include="Controls\ImageBtn.xaml.cs">
+      <DependentUpon>ImageBtn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\RightInfoViewModel.cs" />
+    <Compile Include="ViewModel\RightListViewModel.cs" />
+    <Compile Include="ViewModel\RightSetViewModel.cs" />
+    <Compile Include="ViewModel\RoleInfoViewModel.cs" />
+    <Compile Include="ViewModel\RoleListViewModel.cs" />
+    <Compile Include="ViewModel\SelectToolViewModel.cs" />
+    <Compile Include="ViewModel\SelectUserViewModel.cs" />
+    <Compile Include="ViewModel\SystemSetViewModel.cs" />
+    <Compile Include="ViewModel\ToolRepairInfoViewModel.cs" />
+    <Compile Include="ViewModel\ToolRepairListViewModel.cs" />
+    <Compile Include="ViewModel\ToolReturnViewModel.cs" />
+    <Compile Include="ViewModel\ToolBorrowViewModel.cs" />
+    <Compile Include="ViewModel\ToolInfoViewModel.cs" />
+    <Compile Include="ViewModel\ToolListViewModel.cs" />
+    <Compile Include="ViewModel\ToolCategoryInfoViewModel.cs" />
+    <Compile Include="ViewModel\ToolDamageInfoViewModel.cs" />
+    <Compile Include="ViewModel\ToolStateInfoViewModel.cs" />
+    <Compile Include="ViewModel\DutyInfoViewModel.cs" />
+    <Compile Include="ViewModel\DeptInfoViewModel.cs" />
+    <Compile Include="ViewModel\ToolCategoryListViewModel.cs" />
+    <Compile Include="ViewModel\ToolRecordListViewModel.cs" />
+    <Compile Include="ViewModel\ToolDamageListViewModel.cs" />
+    <Compile Include="ViewModel\ToolStateListViewModel.cs" />
+    <Compile Include="ViewModel\DutyListViewModel.cs" />
+    <Compile Include="ViewModel\DeptListViewModel.cs" />
+    <Compile Include="ViewModel\LoginStatusViewModel.cs" />
+    <Compile Include="ViewModel\UserInfoViewModel.cs" />
+    <Compile Include="ViewModel\UserListViewModel.cs" />
+    <Compile Include="View\SystemSetWindow.xaml.cs">
+      <DependentUpon>SystemSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeptInfoWindow.xaml.cs">
+      <DependentUpon>DeptInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeptListControl.xaml.cs">
+      <DependentUpon>DeptListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DutyInfoWindow.xaml.cs">
+      <DependentUpon>DutyInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DutyListControl.xaml.cs">
+      <DependentUpon>DutyListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IView.cs" />
+    <Compile Include="View\ChangePwdWindow.xaml.cs">
+      <DependentUpon>ChangePwdWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RightSetWindow.xaml.cs">
+      <DependentUpon>RightSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RightInfoWindow.xaml.cs">
+      <DependentUpon>RightInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RightListControl.xaml.cs">
+      <DependentUpon>RightListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RoleInfoWindow.xaml.cs">
+      <DependentUpon>RoleInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RoleListControl.xaml.cs">
+      <DependentUpon>RoleListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SelectToolWindow.xaml.cs">
+      <DependentUpon>SelectToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SelectUserWindow.xaml.cs">
+      <DependentUpon>SelectUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolRepairInfoWindow.xaml.cs">
+      <DependentUpon>ToolRepairInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolDamageInfoWindow.xaml.cs">
+      <DependentUpon>ToolDamageInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolRepairListControl.xaml.cs">
+      <DependentUpon>ToolRepairListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolDamageListControl.xaml.cs">
+      <DependentUpon>ToolDamageListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolReturnWindow.xaml.cs">
+      <DependentUpon>ToolReturnWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolBorrowWindow.xaml.cs">
+      <DependentUpon>ToolBorrowWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolInfoWindow.xaml.cs">
+      <DependentUpon>ToolInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolRecordListControl.xaml.cs">
+      <DependentUpon>ToolRecordListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolListControl.xaml.cs">
+      <DependentUpon>ToolListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolCategoryInfoWindow.xaml.cs">
+      <DependentUpon>ToolCategoryInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolStateInfoWindow.xaml.cs">
+      <DependentUpon>ToolStateInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolCategoryListControl.xaml.cs">
+      <DependentUpon>ToolCategoryListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolStateListControl.xaml.cs">
+      <DependentUpon>ToolStateListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginStatusWindow.xaml.cs">
+      <DependentUpon>LoginStatusWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserListControl.xaml.cs">
+      <DependentUpon>UserListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\MsgToken.cs" />
+    <Compile Include="Common\SysCfg.cs" />
+    <Compile Include="Controls\BusyIndicator.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserInfoWindow.xaml.cs">
+      <DependentUpon>UserInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\ImageBtn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemSetWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DeptInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeptListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DutyInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DutyListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChangePwdWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RightSetWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RightInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RightListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RoleInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RoleListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SelectToolWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SelectUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ToolRepairInfoWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolDamageInfoWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolRepairListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolDamageListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolReturnWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolBorrowWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ToolRecordListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ToolCategoryInfoWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolStateInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ToolCategoryListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ToolStateListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginStatusWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FaceBLL\FaceBLL.csproj">
+      <Project>{de8e7fdc-3b3d-4f52-841d-9d7082231130}</Project>
+      <Name>FaceBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolMgt.BLL\ToolMgt.BLL.csproj">
+      <Project>{4abac067-4e5a-4566-992e-72bdddd558f5}</Project>
+      <Name>ToolMgt.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolMgt.Common\ToolMgt.Common.csproj">
+      <Project>{6590cb16-d4af-41fc-82db-03b79cadf5a6}</Project>
+      <Name>ToolMgt.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolMgt.Helper\ToolMgt.Helper.csproj">
+      <Project>{8864219a-ae9b-43d9-8dfb-dcda4710c05e}</Project>
+      <Name>ToolMgt.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolMgt.Model\ToolMgt.Model.csproj">
+      <Project>{58660b07-d143-4288-b8ff-2005cecce570}</Project>
+      <Name>ToolMgt.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Login_top.png" />
+    <Resource Include="Images\_login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lgb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\adduser1.png" />
+    <Resource Include="Images\adduser2.png" />
+    <Resource Include="Images\edit1.png" />
+    <Resource Include="Images\edit2.png" />
+    <Resource Include="Images\search1.png" />
+    <Resource Include="Images\search2.png" />
+    <Resource Include="Images\set1.png" />
+    <Resource Include="Images\set2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\download1.png" />
+    <Resource Include="Images\download2.png" />
+    <Resource Include="Images\upload1.png" />
+    <Resource Include="Images\upload2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add1.png" />
+    <Resource Include="Images\add2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete1.png" />
+    <Resource Include="Images\delete2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cancel1.png" />
+    <Resource Include="Images\cancel2.png" />
+    <Resource Include="Images\commit1.png" />
+    <Resource Include="Images\commit2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\refresh1.png" />
+    <Resource Include="Images\refresh2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gjx1.png" />
+    <Resource Include="Images\gjx2.png" />
+    <Resource Include="Images\tool1.png" />
+    <Resource Include="Images\tool2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plus1.png" />
+    <Resource Include="Images\plus2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\camera1.png" />
+    <Resource Include="Images\camera2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\more1.png" />
+    <Resource Include="Images\more2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\notebook1.png" />
+    <Resource Include="Images\notebook2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\left1.png" />
+    <Resource Include="Images\left2.png" />
+    <Resource Include="Images\right1.png" />
+    <Resource Include="Images\right2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+</Project>
